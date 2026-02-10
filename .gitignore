@@ -1,0 +1,27 @@
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.vscode/
+
+# Logs
+*.log
+
+# NuGet
+*.nupkg
+packages/
+*.lock.json
+
+# Rider
+.idea/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# JetBrains
+*.iml
