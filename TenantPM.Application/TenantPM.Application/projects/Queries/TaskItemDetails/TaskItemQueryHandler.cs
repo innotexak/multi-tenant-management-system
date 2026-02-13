@@ -9,9 +9,9 @@ namespace TenantPM.Application.projects.Queries.TaskItemDetails
     public class TaskItemQueryHandler : IRequestHandler<TaskItemQuery, TaskItemDetailResponse>
     {
         private readonly IMapper _mapper;
-        private readonly IAsyncRepository<TaskItem> _taskItemRepository;
+        private readonly ITaskItemRepository _taskItemRepository;
 
-        public TaskItemQueryHandler(IMapper mapper, IAsyncRepository<TaskItem> taskItemRepository)
+        public TaskItemQueryHandler(IMapper mapper, ITaskItemRepository taskItemRepository)
         {
             _mapper = mapper;
             _taskItemRepository = taskItemRepository;
@@ -19,7 +19,7 @@ namespace TenantPM.Application.projects.Queries.TaskItemDetails
         public async Task<TaskItemDetailResponse> Handle(TaskItemQuery request, CancellationToken cancellationToken)
         {
 
-            var result = await _taskItemRepository.GetByIdAsync(request.TaskItemId, cancellationToken);
+            var result = await _taskItemRepository.GetSingleItem(request.TaskItemId);
 
             if (result == null)
             {

@@ -9,7 +9,7 @@ using TenantPM.Domain.Entities;
 
 namespace TenantPM.Application.projects.Command.CreateProjectCommand
 {
-    public class CreateProjectCommand : IRequest<BaseResponse<Guid>>
+    public class CreateProjectCommand : IRequest<CreateProjectCommandResponse>
     {
         public string Name { get; set; }
         public string Description { get; set; }

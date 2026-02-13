@@ -49,7 +49,8 @@ namespace TenantPM.Application.projects.Command.AddMemberToProject
             {
                 ProjectId = request.ProjectId,
                 UserId = request.UserId,
-                ProjectRole = request.ProjectRole
+                ProjectRole = request.ProjectRole,
+                Id = Guid.NewGuid()
             };
 
             await _projectMemberRepo.AddAsync(projectMember);

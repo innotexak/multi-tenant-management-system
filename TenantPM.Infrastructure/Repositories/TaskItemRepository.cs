@@ -17,10 +17,20 @@ namespace TenantPM.Infrastructure.Repositories
         public async Task<List<TaskItem>> GetItems(Guid projectId)
         {
             return await _dbContext.TaskItems
-                .Where(t => t.ProjectId == projectId)
-                .ToListAsync();
+           .Include(t => t.Project)  
+           .Where(t => t.ProjectId == projectId)
+           .ToListAsync();
+
         }
 
-        
+        public async Task<TaskItem> GetSingleItem(Guid projectId)
+        {
+            return await _dbContext.TaskItems
+           .Include(t => t.Project)
+           .Where(t => t.ProjectId == projectId)
+           .FirstOrDefaultAsync();
+
+        }
+
     }
 }

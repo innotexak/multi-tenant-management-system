@@ -34,6 +34,7 @@ namespace TenantPM.Application.projects.Command.CreateTask
             }
 
             var taskItem = _mapper.Map<TaskItem>(request);
+            taskItem.Id = Guid.NewGuid();
 
             var createdTaskItem = await _taskItemRepository.AddAsync(taskItem);
 

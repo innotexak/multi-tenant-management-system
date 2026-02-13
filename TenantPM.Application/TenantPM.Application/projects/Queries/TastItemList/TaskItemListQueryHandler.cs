@@ -34,9 +34,12 @@ namespace TenantPM.Application.projects.Queries.TastItemList
         public async Task<TaskItemListQueryResponse> Handle(TaskItemListQuery request, CancellationToken cancellationToken)
         {
             var currentUserId = _currentService.UserId;
+            var currentUserRole = _currentService.Role;
             var isProjectMember = await _projectAuthorizationService.IsProjectMemberAsync(request.ProjectId, (Guid)currentUserId);
-
-            if (!isProjectMember) throw new UnauthorizedAccessException("You are not authorized to access this project.");
+            if (!isProjectMember && currentUserRole != "Admin")
+            {
+                throw new UnauthorizedAccessException("You are not authorized to access this resources.");
+            }
 
             var taskItems = await _taskItemRepository.GetItems(request.ProjectId);
 

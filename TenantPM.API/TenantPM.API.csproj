@@ -18,12 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Response\" />
-    <Folder Include="Models\Request\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TenantPM.Application\TenantPM.Application\TenantPM.Application.csproj" />
+    <ProjectReference Include="..\TenantPM.Application\TenantPM.Contrast\TenantPM.Contrast.csproj" />
     <ProjectReference Include="..\TenantPM.Infrastructure\TenantPM.Infrastructure.csproj" />
   </ItemGroup>
 

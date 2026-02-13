@@ -34,6 +34,8 @@ namespace TenantPM.Application.Auth.Command.Register
 
             var user = _mapper.Map<User>(request);
 
+            user.Id = Guid.NewGuid();
+
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
             user.Role = RoleEnum.Member;
 

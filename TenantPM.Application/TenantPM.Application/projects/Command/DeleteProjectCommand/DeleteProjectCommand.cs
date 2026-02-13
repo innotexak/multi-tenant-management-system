@@ -8,7 +8,7 @@ using TenantPM.Domain.Common;
 
 namespace TenantPM.Application.projects.Command.DeleteProjectCommand
 {
-    public class DeleteProjectCommand : IRequest<BaseResponse<Guid>>
+    public class DeleteProjectCommand : IRequest<DeleteProjectCommandResponse>
     {
         public Guid ProjectId { get; set; }
     }

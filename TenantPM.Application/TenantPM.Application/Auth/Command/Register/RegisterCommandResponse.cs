@@ -1,4 +1,5 @@
-﻿using TenantPM.Domain.Common;
+﻿using System;
+using TenantPM.Domain.Common;
 
 namespace TenantPM.Application.Auth.Command.Register
 {

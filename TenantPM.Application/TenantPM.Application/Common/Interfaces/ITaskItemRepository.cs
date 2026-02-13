@@ -10,5 +10,6 @@ namespace TenantPM.Application.Common.Interfaces
     public interface ITaskItemRepository
     {
         Task<List<TaskItem>> GetItems(Guid projectId);
+        Task<TaskItem> GetSingleItem(Guid projectId );
     }
 }

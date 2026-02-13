@@ -1,8 +1,12 @@
 ﻿
+using AutoMapper;
+using Azure.Core;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TenantPM.Application.Auth.Command.Login;
 using TenantPM.Application.Auth.Command.Register;
+using TenantPM.Contrast.Request.Auth;
+using TenantPM.Contrast.Response.Auth;
 
 namespace TenantPM.API.Controllers
 {
@@ -11,23 +15,30 @@ namespace TenantPM.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public AuthController(IMediator mediator)
+        public AuthController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpPost("login", Name = "LoginUser")]
-        public async Task<LoginCommandResponse> Login([FromBody] LoginCommand loginCommand)
+        public async Task<LoginResponse> Login([FromBody] LoginRequest request)
         {
-            return await _mediator.Send(loginCommand);
+            var command = _mapper.Map<LoginCommand>(request);
+            var commandResponse =  await _mediator.Send(command);
+            return _mapper.Map<LoginResponse>(commandResponse);
         }
 
 
         [HttpPost("register", Name = "RegisterUser")]
-        public async Task<RegisterCommandResponse> Register([FromBody] RegisterCommand registerCommand)
+        public async Task<RegisterationResponse> Register([FromBody] RegisterRequest request)
         {
-            return await _mediator.Send(registerCommand);
+            var command = _mapper.Map<RegisterCommand>(request);
+            var regCommandResponse =  await _mediator.Send(command);
+            return _mapper.Map<RegisterationResponse>(regCommandResponse);
+         
         }
     }
 }

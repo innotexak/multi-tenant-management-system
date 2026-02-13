@@ -4,9 +4,6 @@ namespace TenantPM.Application.projects.Queries.GetProject
 {
     public class ProjectDetailVn: BaseResponse<ProjectDetails>
     {
-       
-
-    
 
     }
 
